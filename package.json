@@ -62,6 +62,7 @@
     "tailwindcss": "3.4.17",
     "typescript": "5.7.2",
     "vite": "5.4.7",
+    "terser": "5.37.0",
     "vite-plugin-barrel": "0.2.0",
     "vite-plugin-commonjs": "0.10.3",
     "vite-plugin-environment": "1.1.3",
