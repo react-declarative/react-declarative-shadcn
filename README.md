@@ -1,77 +1,206 @@
-# React Shadcn Starter
+# ⚛️ react-declarative-shadcn
 
-React + Vite + TypeScript template for building apps with shadcn/ui.
+> The [shadcn ui kit](https://ui.shadcn.com/) bindings for [react-declarative](https://github.com/react-declarative/react-declarative/) 
 
-## Getting Started
+![screenshot](./screenshot.png)
 
-```
-git clone https://github.com/hayyi2/react-shadcn-starter.git new-project
-cd new-project
+## Getting started
+
+```bash
 npm install
-npm run dev
+npm start
 ```
 
-## Getting Done
+## Code sample
 
-- [x] Single page app with navigation and responsif layout
+```tsx
+import { FieldType, One, TypedField } from "react-declarative";
+import { FormGroup } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 
-- [x] Customable configuration `/config`
+const frameworks = [
+  {
+    value: "next.js",
+    label: "Next.js",
+  },
+  {
+    value: "sveltekit",
+    label: "SvelteKit",
+  },
+  {
+    value: "nuxt.js",
+    label: "Nuxt.js",
+  },
+  {
+    value: "remix",
+    label: "Remix",
+  },
+  {
+    value: "astro",
+    label: "Astro",
+  },
+];
 
-- [x] Simple starting page/feature `/pages`
+const fields: TypedField[] = [
+  {
+    type: FieldType.Typography,
+    typoVariant: "h4",
+    placeholder: "Base information",
+  },
+  {
+    type: FieldType.Outline,
+    fieldBottomMargin: "1",
+    fields: [
+      {
+        type: FieldType.Typography,
+        typoVariant: "h6",
+        placeholder: "Profile Information",
+      },
+      {
+        type: FieldType.Text,
+        validation: { required: true },
+        name: "email",
+        title: "Email",
+        placeholder: "tripolskypetr@gmail.com",
+        description: "This will not be shared",
+        desktopColumns: "6",
+        phoneColumns: "12",
+      },
+      {
+        type: FieldType.Text,
+        validation: { required: true },
+        name: "password",
+        title: "Password",
+        placeholder: "Password",
+        description: "Use a secure password",
+        desktopColumns: "6",
+        phoneColumns: "12",
+      },
+      {
+        type: FieldType.Text,
+        inputRows: 3,
+        validation: { required: true },
+        name: "bio",
+        title: "Tell me about yourself",
+        placeholder: "I am ...",
+        description: "This will be used by AI",
+        desktopColumns: "12",
+      },
+    ],
+  },
+  {
+    type: FieldType.Typography,
+    typoVariant: "h4",
+    placeholder: "Other preferences",
+  },
+  {
+    type: FieldType.Outline,
+    fieldBottomMargin: "1",
+    fields: [
+      {
+        type: FieldType.Typography,
+        typoVariant: "h6",
+        placeholder: "Account Settings",
+      },
+      {
+        type: FieldType.Component,
+        style: { width: "100%", marginBottom: "1rem" },
+        element: () => (
+          <FormGroup
+            label="Account Type"
+            description="Select your account type."
+          />
+        ),
+      },
+      {
+        type: FieldType.Box,
+        style: { width: "100%" },
+        fields: [
+          {
+            type: FieldType.Radio,
+            radioValue: "staff",
+            title: "Staff",
+            name: "account",
+          },
+          {
+            type: FieldType.Radio,
+            radioValue: "admin",
+            title: "Admin",
+            name: "account",
+          },
+          {
+            type: FieldType.Radio,
+            radioValue: "owner",
+            title: "Owner",
+            name: "account",
+          },
+        ],
+      },
+      {
+        type: FieldType.Combo,
+        name: "framework",
+        title: "Favorite Framework",
+        placeholder: "Select framework",
+        description: "More important than your skills",
+        itemList: frameworks.map(({ value }) => value),
+        tr: (value) =>
+          frameworks.find((f) => f.value === value)?.label || value,
+        desktopColumns: "12",
+      },
+    ],
+  },
+  {
+    type: FieldType.Typography,
+    typoVariant: "h4",
+    placeholder: "Notifications",
+  },
+  {
+    type: FieldType.Outline,
+    fieldBottomMargin: "1",
+    fields: [
+      {
+        type: FieldType.Typography,
+        typoVariant: "h6",
+        placeholder: "Preferences",
+      },
+      {
+        type: FieldType.Switch,
+        title: "Enable notifications",
+        name: "notify",
+      },
+    ],
+  },
+  {
+    type: FieldType.Typography,
+    typoVariant: "h4",
+    placeholder: "Finish",
+  },
+  {
+    type: FieldType.Outline,
+    fieldBottomMargin: "1",
+    fields: [
+      {
+        type: FieldType.Checkbox,
+        title: "Accept terms & conditions",
+        name: "agree",
+      },
+      {
+        type: FieldType.Button,
+        fieldRightMargin: "0",
+        title: "Submit",
+      },
+      {
+        type: FieldType.Component,
+        element: () => (
+            <Button variant="destructive">Clear</Button>
+        )
+      }
+    ],
+  },
+];
 
-- [x] Github action deploy github pages
+export default function MainPage() {
+  return <One fields={fields} sx={{ p: 1 }} />;
+}
 
-## Deploy `gh-pages`
-- change `basenameProd` in `/vite.config.ts`
-- create deploy key `GITHUB_TOKEN` in github `/settings/keys`
-- commit and push changes code
-- setup gihub pages to branch `gh-pages`
-- run action `Build & Deploy`
-
-### Auto Deploy
-- change file `.github/workflows/build-and-deploy.yml`
-- Comment on `workflow_dispatch`
-- Uncomment on `push`
-```yaml
-# on:
-#   workflow_dispatch:
-on:
-  push:
-    branches: ["main"]
 ```
-
-## Features
-
-- React + Vite + TypeScript
-- Tailwind CSS
-- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [shadcn-ui](https://github.com/shadcn-ui/ui/)
-- [radix-ui/icons](https://www.radix-ui.com/icons)
-
-## Project Structure
-
-```
-react-shadcn-starter/
-├── public/            # Public assets
-├── src/               # Application source code
-│   ├── components/    # React components
-│   │   └── ui/        # shadc/ui components
-│   │   └── layouts/   # layouts components
-│   ├── context/       # contexts components
-│   ├── config/        # Config data
-│   ├── hook/          # Custom hooks
-│   ├── lib/           # Utility functions
-│   ├── pages/         # pages/features components
-│   ├── App.tsx        # Application entry point
-│   ├── index.tsx      # Main rendering file
-│   └── Router.tsx     # Routes component
-├── index.html         # HTML entry point
-├── postcss.config.js  # PostCSS configuration
-├── tailwind.config.js # Tailwind CSS configuration
-├── tsconfig.json      # TypeScript configuration
-└── vite.config.ts     # Vite configuration
-```
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/hayyi2/react-shadcn-starter/blob/main/LICENSE) file for details. 

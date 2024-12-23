@@ -113,7 +113,7 @@ const FormRadioGroupItem = React.forwardRef<
         onClick={onClick}
         style={style}
       >
-        <div className="flex-row gap-2 items-center" onClick={onClick}>
+        <div className="flex flex-row gap-2 items-center" onClick={onClick}>
           <RadioGroupItem
             aria-labelledby={name}
             value={radioValue}
@@ -262,7 +262,7 @@ const FormSwitch = React.forwardRef<
         style={style}
       >
         <div
-          className="flex-row gap-3 items-center"
+          className="flex flex-row gap-3 items-center"
           onClick={handleOnLabelPress}
         >
           <Switch
@@ -499,7 +499,7 @@ const FormCheckbox = React.forwardRef<
         style={style}
       >
         <div
-          className="flex-row gap-3 items-center"
+          className="flex flex-row gap-3 items-center"
           onClick={handleOnLabelPress}
         >
           <Checkbox
