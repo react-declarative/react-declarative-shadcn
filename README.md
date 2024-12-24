@@ -2,7 +2,7 @@
 
 > The [shadcn ui kit](https://ui.shadcn.com/) bindings for [react-declarative](https://github.com/react-declarative/react-declarative/) 
 
-![screenshot](./screenshot.png)
+![screencast](./screencast.gif)
 
 ## Getting started
 
